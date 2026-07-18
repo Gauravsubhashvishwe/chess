@@ -159,18 +159,35 @@ public:
         }
         return false;
     }
+
     bool valid_n_m(int x1, int y1, int x2, int y2){
-        return true;
+        bool white = false;
+        if(board[x1][y1] >= 'A' && board[x1][y1] <= 'Z')white = true;
+        int dx = abs(x1 - x2);
+        int dy = abs(y1 - y2);
+        if((dx == 1 && dy == 2) || (dx == 2 && dy == 1)){
+            if(white){
+                if(board[x2][y2] == ' ' || (board[x2][y2] >= 'a' && board[x2][y2] <= 'z'))return true;
+            }
+            else{
+                if(board[x2][y2] == ' ' || (board[x2][y2] >= 'A' && board[x2][y2] <= 'Z'))return true;
+            }
+        }
+        return false;
     }
+
     bool valid_b_m(int x1, int y1, int x2, int y2){
         return true;
     }
+
     bool valid_k_m(int x1, int y1, int x2, int y2){
         return true;
     }
+    
     bool valid_q_m(int x1, int y1, int x2, int y2){
         return true;
     }
+    
     bool isValidMove(int x1, int y1, int x2, int y2){
         if(board[x1][y1] == 'p' || board[x1][y1] == 'P'){
             if(valid_p_m(x1, y1, x2, y2)){
