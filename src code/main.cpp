@@ -133,7 +133,31 @@ public:
     }
 
     bool valid_r_m(int x1, int y1, int x2, int y2){
-        return true;
+        bool white = false;
+        if(board[x1][y1] > 'A' && board[x1][y1] < 'Z')white = true;
+        if(x1 == x2){
+            for(int i = min(y1, y2) + 1; i < max(y1, y2); i++ ){
+                if(board[x1][i] != ' ')return false;
+            }
+            if(white){
+                if(board[x2][y2] == ' ' || (board[x2][y2] >= 'a' && board[x2][y2] <= 'z'))return true;
+            }
+            else{
+                if(board[x2][y2] == ' ' || (board[x2][y2] >= 'A' && board[x2][y2] <= 'Z'))return true;
+            }
+        }
+        else if(y1 == y2){
+            for(int i = min(x1,x2) + 1; i < max(x1, x2); i++){
+                if(board[i][y1] != ' ')return false;
+            }
+            if(white){
+                if(board[x2][y2] == ' ' || (board[x2][y2] >= 'a' && board[x2][y2] <= 'z'))return true;
+            }
+            else{
+                if(board[x2][y2] == ' ' || (board[x2][y2] >= 'A' && board[x2][y2] <= 'Z'))return true;
+            }
+        }
+        return false;
     }
     bool valid_n_m(int x1, int y1, int x2, int y2){
         return true;
