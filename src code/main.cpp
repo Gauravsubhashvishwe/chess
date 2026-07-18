@@ -203,7 +203,7 @@ public:
     }
     
     bool valid_q_m(int x1, int y1, int x2, int y2){
-        return true;
+        return (valid_r_m(x1, y1, x2, y2) || valid_b_m(x1, y1, x2, y2));
     }
     
     bool isValidMove(int x1, int y1, int x2, int y2){
