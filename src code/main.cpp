@@ -260,9 +260,17 @@ void nextmove(Board &chessBoard) {
     int x1, y1, x2, y2;
     do{
         cout<<"Enter the coordinates of the piece you want to move ex. 0 0 & 0 7 for black rook: ";
-        cin>>x1>>y1;
+        if (!(cin >> x1 >> y1)) {
+            cin.clear(); // Clear the error flag
+            cin.ignore(10000, '\n'); // Discard bad input
+            continue;
+        }
         cout<<"Enter the coordinates of the destination: ";
-        cin>>x2>>y2;
+        if (!(cin>>x2>>y2)) {
+            cin.clear(); // Clear the error flag
+            cin.ignore(10000, '\n'); // Discard bad input
+            continue;
+        }
     }while(!chessBoard.isValidpeace(x1,y1) || !chessBoard.isValidMove(x1, y1, x2, y2) || (x1 == x2 && y1 == y2));
     chessBoard.move(x1, y1, x2, y2);
     return;
