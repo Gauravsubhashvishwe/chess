@@ -65,8 +65,81 @@ public:
         }
     }
 
-    bool isValidMove(int x1, int y1, int x2, int y2){
+    bool valid_p_m(int x1, int y1, int x2, int y2){
+        if(board[x1][x1] >= 'a' && board[x1][y1] <= 'z'){
+            if(x1 == 1){
+                if(x2 == 2){
+                    if(y1 == y2 && board[x2][y2] == ' '){
+                        return true;
+                    }
+                    else if((y1 == y2 - 1 || y1 == y2 + 1) && (board[x2][y2] >= 'A' && board[x2][y2] <= 'Z')){
+                        return true;
+                    }
+                }
+                else if(x2 == 3 && y1 == y2 && board[2][y1] == ' ' && board[3][y1] == ' '){
+                    return true;
+                }
+            }
+            else{
+                if(x2 == x1 + 1 && ((y1 == y2 && board[x2][y2] == ' ') || ((y1 == y2 + 1 || y1 == y2 - 1) && (board[x2][y2] >= 'A' && board[x2][y2] <= 'Z'))))return true;
+            }
+        }
+        else{
+            if(x1 == 6){
+                if(x2 == 5){
+                    if(y1 == y2 && board[x2][y2] == ' '){
+                        return true;
+                    }
+                    else if((y1 == y2 - 1 || y1 == y2 + 1) && (board[x2][y2] >= 'a' && board[x2][y2] <= 'z')){
+                        return true;
+                    }
+                }
+                else if(x2 == 4 && y1 == y2 && board[5][y1] == ' ' && board[4][y1] == ' '){
+                    return true;
+                }
+            }
+            else{
+                if(x2 == x1 - 1 && ((y1 == y2 && board[x2][y2] == ' ') || ((y1 == y2 + 1 || y1 == y2 - 1) && (board[x2][y2] >= 'a' && board[x2][y2] <= 'z'))))return true;
+            }
+        }
+        return false;
+    }
+
+    bool valid_r_m(int x1, int y1, int x2, int y2){
         return true;
+    }
+    bool valid_n_m(int x1, int y1, int x2, int y2){
+        return true;
+    }
+    bool valid_b_m(int x1, int y1, int x2, int y2){
+        return true;
+    }
+    bool valid_k_m(int x1, int y1, int x2, int y2){
+        return true;
+    }
+    bool valid_q_m(int x1, int y1, int x2, int y2){
+        return true;
+    }
+    bool isValidMove(int x1, int y1, int x2, int y2){
+        if(board[x1][y1] == 'p' || board[x1][y1] == 'P'){
+            return valid_p_m(x1, y1, x2, y2);
+        }
+        else if(board[x1][y1] == 'r' || board[x1][y1] == 'R'){
+            return valid_r_m(x1, y1, x2, y2);
+        }
+        else if(board[x1][y1] == 'n' || board[x1][y1] == 'N'){
+            return valid_n_m(x1, y1, x2, y2);
+        }
+        else if(board[x1][y1] == 'b' || board[x1][y1] == 'B'){
+            return valid_b_m(x1, y1, x2, y2);
+        }
+        else if(board[x1][y1] == 'k' || board[x1][y1] == 'K'){
+            return valid_k_m(x1, y1, x2, y2);
+        }
+        else if(board[x1][y1] == 'q' || board[x1][y1] == 'Q'){
+            return valid_q_m(x1, y1, x2, y2);
+        }
+        return false;
     }
 
     void move(int x1, int y1, int x2, int y2){
