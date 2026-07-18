@@ -38,10 +38,10 @@ public:
                 
                 // If the piece is lowercase, it belongs to the black player
                 if (islower(piece)) {
-                    cout << BLACK_TEXT_WHITE_BG << piece  << " " << RESET_COLOR;
+                    cout << BLACK_TEXT_WHITE_BG<< " " << char(toupper(piece)) << " " << RESET_COLOR;
                 } else {
                     // Print empty spaces and white pieces normally
-                    cout << piece << " ";
+                    cout << " " << piece << " ";
                 }
             }
             cout << endl;
