@@ -134,7 +134,7 @@ public:
 
     bool valid_r_m(int x1, int y1, int x2, int y2){
         bool white = false;
-        if(board[x1][y1] > 'A' && board[x1][y1] < 'Z')white = true;
+        if(board[x1][y1] >= 'A' && board[x1][y1] <= 'Z')white = true;
         if(x1 == x2){
             for(int i = min(y1, y2) + 1; i < max(y1, y2); i++ ){
                 if(board[x1][i] != ' ')return false;
@@ -177,7 +177,25 @@ public:
     }
 
     bool valid_b_m(int x1, int y1, int x2, int y2){
-        return true;
+        bool white = false;
+        if(board[x1][y1] >= 'A' && board[x1][y1] <= 'Z')white = true;
+        int dx = x2 - x1;
+        int dy = y2 - y1;
+        int n = abs(dx);
+        if( dx != 0 && abs(dx) == abs(dy)){
+            dx /= abs(dx);
+            dy /= abs(dy);
+            for(int i = 1; i < n; i++){
+                if(board[x1 + dx*i][y1 + dy*i] != ' ')return false;
+            }
+            if(white){
+                if(board[x2][y2] == ' ' || (board[x2][y2] >= 'a' && board[x2][y2] <= 'z'))return true;
+            }
+            else{
+                if(board[x2][y2] == ' ' || (board[x2][y2] >= 'A' && board[x2][y2] <= 'Z'))return true;
+            }
+        }
+        return false;
     }
 
     bool valid_k_m(int x1, int y1, int x2, int y2){
