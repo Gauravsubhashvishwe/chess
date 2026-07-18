@@ -65,8 +65,29 @@ public:
         }
     }
 
+    void upgrad_p(int x, int y){
+        cout<<"You Have Option to upgrad your Pawn. Type q-Queen, n-night, b-bishop, r-rook other charachter for exit: ";
+        bool valid = false;
+        do{
+            char ch; cin>>ch;
+            if(board[x][y] >= 'A' && board[x][y] <= 'Z'){
+                if(ch == 'q' || ch =='n' || ch == 'b' || ch == 'r'){
+                    board[x][y] = char(toupper(ch));
+                    valid = true;
+                }
+            }
+            else{
+                if(ch == 'q' || ch =='n' || ch == 'b' || ch == 'r'){
+                    board[x][y] = ch;
+                    valid = true;
+                }
+            }
+        }while(!valid);
+        return;
+    }
+
     bool valid_p_m(int x1, int y1, int x2, int y2){
-        if(board[x1][x1] >= 'a' && board[x1][y1] <= 'z'){
+        if(board[x1][y1] >= 'a' && board[x1][y1] <= 'z'){
             if(x1 == 1){
                 if(x2 == 2){
                     if(y1 == y2 && board[x2][y2] == ' '){
@@ -122,7 +143,13 @@ public:
     }
     bool isValidMove(int x1, int y1, int x2, int y2){
         if(board[x1][y1] == 'p' || board[x1][y1] == 'P'){
-            return valid_p_m(x1, y1, x2, y2);
+            if(valid_p_m(x1, y1, x2, y2)){
+                if(x2 == 0 || x2 == 7){
+                    upgrad_p(x1, y1);
+                }
+                return true;
+            }
+
         }
         else if(board[x1][y1] == 'r' || board[x1][y1] == 'R'){
             return valid_r_m(x1, y1, x2, y2);
