@@ -49,6 +49,7 @@ public:
     }
 
     bool isValidpeace(int x1, int y1){
+        if(x1 < 0 || x1 > 7 || y1 < 0 || y1 > 7)return false;
         if(isWhiteTurn){
             if(board[x1][y1] >= 'A' && board[x1][y1] <= 'Z'){
                 return true;
@@ -197,13 +198,25 @@ public:
         }
         return false;
     }
-
-    bool valid_k_m(int x1, int y1, int x2, int y2){
-        return true;
-    }
     
     bool valid_q_m(int x1, int y1, int x2, int y2){
         return (valid_r_m(x1, y1, x2, y2) || valid_b_m(x1, y1, x2, y2));
+    }
+
+    bool valid_k_m(int x1, int y1, int x2, int y2){
+        bool white = false;
+        if(board[x1][y1] >= 'A' && board[x1][y1] <= 'Z')white = true;
+        int dx = x2 - x1;
+        int dy = y2 - y1;
+        if(abs(dx) <= 1 && abs(dy) <= 1){
+            if(white){
+                if(board[x2][y2] == ' ' || (board[x2][y2] >= 'a' && board[x2][y2] <= 'z'))return true;
+            }
+            else{
+                if(board[x2][y2] == ' ' || (board[x2][y2] >= 'A' && board[x2][y2] <= 'Z'))return true;
+            }
+        }
+        return false;
     }
     
     bool isValidMove(int x1, int y1, int x2, int y2){
@@ -242,26 +255,25 @@ public:
     }
 };
 
-void nextmove(Board* chessBoard) {
+void nextmove(Board &chessBoard) {
     int x1, y1, x2, y2;
     do{
         cout<<"Enter the coordinates of the piece you want to move ex. 0 0 & 0 7 for black rook: ";
         cin>>x1>>y1;
         cout<<"Enter the coordinates of the destination: ";
         cin>>x2>>y2;
-    }while(!chessBoard->isValidpeace(x1,y1) || !chessBoard->isValidMove(x1, y1, x2, y2));
-    chessBoard->move(x1, y1, x2, y2);
+    }while(!chessBoard.isValidpeace(x1,y1) || !chessBoard.isValidMove(x1, y1, x2, y2) || (x1 == x2 && y1 == y2));
+    chessBoard.move(x1, y1, x2, y2);
     return;
 }
 
 int main() {
-    Board* chessBoard = new Board();
-    chessBoard->display();
+    Board chessBoard;
+    chessBoard.display();
     while(1){
         nextmove(chessBoard);
         std::cout << "\033[2J\033[3J\033[1;1H" << std::flush;
-        chessBoard->display(); 
+        chessBoard.display(); 
     }
-    delete chessBoard;
     return 0;
 }
