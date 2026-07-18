@@ -101,6 +101,9 @@ public:
                     return true;
                 }
             }
+            // else if(x1 == 4 && (x2 == x1 + 1 && ((y1 == y2 + 1 || y1 == y2 - 1)))){
+            //     if(board[4][y2] == 'P' && board[5][y2] == ' ') return true;
+            // }
             else{
                 if(x2 == x1 + 1 && ((y1 == y2 && board[x2][y2] == ' ') || ((y1 == y2 + 1 || y1 == y2 - 1) && (board[x2][y2] >= 'A' && board[x2][y2] <= 'Z'))))return true;
             }
@@ -119,6 +122,9 @@ public:
                     return true;
                 }
             }
+            // else if(x1 == 3 && (x2 == x1 - 1 && ((y1 == y2 + 1 || y1 == y2 - 1)))){
+            //     if(board[3][y2] == 'p' && board[2][y2] == ' ') return true;
+            // }
             else{
                 if(x2 == x1 - 1 && ((y1 == y2 && board[x2][y2] == ' ') || ((y1 == y2 + 1 || y1 == y2 - 1) && (board[x2][y2] >= 'a' && board[x2][y2] <= 'z'))))return true;
             }
