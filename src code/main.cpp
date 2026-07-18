@@ -6,7 +6,7 @@ using namespace std;
 
 class Board {
     vector<vector<char>> board;
-
+    bool isWhiteTurn = true; // Track whose turn it is
 public:
     Board() : board(8, vector<char>(8, ' ')) {
         for(int i = 0; i < 8; i++){
@@ -47,10 +47,56 @@ public:
             cout << endl;
         }
     }
+
+    bool isValidpeace(int x1, int y1){
+        if(isWhiteTurn){
+            if(board[x1][y1] >= 'A' && board[x1][y1] <= 'Z'){
+                return true;
+            }
+            cout<<"It't whites turn give coordinates of white;"<<endl;
+            return false;
+        }
+        else {
+            if(board[x1][y1] >= 'a' && board[x1][y1] <= 'z'){
+                return true;
+            }
+            cout<<"It't Blacks turn give coordinates of black"<<endl;
+            return false;
+        }
+    }
+
+    bool isValidMove(int x1, int y1, int x2, int y2){
+        return true;
+    }
+
+    void move(int x1, int y1, int x2, int y2){
+        board[x2][y2] = board[x1][y1];
+        board[x1][y1] = ' ';
+        isWhiteTurn ^= 1;
+        return;
+    }
 };
 
+void nextmove(Board* chessBoard) {
+    int x1, y1, x2, y2;
+    do{
+        cout<<"Enter the coordinates of the piece you want to move ex. 0 0 & 0 7 for black rook: ";
+        cin>>x1>>y1;
+        cout<<"Enter the coordinates of the destination: ";
+        cin>>x2>>y2;
+    }while(!chessBoard->isValidpeace(x1,y1) || !chessBoard->isValidMove(x1, y1, x2, y2));
+    chessBoard->move(x1, y1, x2, y2);
+    return;
+}
+
 int main() {
-    Board chessBoard;
-    chessBoard.display();
+    Board* chessBoard = new Board();
+    chessBoard->display();
+    while(1){
+        nextmove(chessBoard);
+        std::cout << "\033[2J\033[3J\033[1;1H" << std::flush;
+        chessBoard->display(); 
+    }
+    delete chessBoard;
     return 0;
 }
