@@ -48,6 +48,98 @@ public:
         }
     }
 
+    void check(){
+        if(isWhiteTurn){
+            int x,y;
+            for(int i = 7; i >= 0; i--){
+                for(int j = 0; j < 8; j++){
+                    if(board[i][j] == 'K'){
+                        x = i;
+                        y = j;
+                    }
+                }
+            }
+            {///////// row check ///////////
+                int l = x + 1;
+                int m = y;
+                while(l < 8 && board[l][m] == ' ')l++;
+                if(l < 8 && (board[l][m] == 'r' || board[l][m] == 'q')){
+                    cout<<"white king is under check\n";
+                    return;
+                }
+                l = x - 1;
+                while(l >= 0 && board[l][m] == ' ')l--;
+                if(l >= 0 && (board[l][m] == 'r' || board[l][m] == 'q')){
+                    cout<<"white king is under check\n";
+                    return;
+                }
+            }
+            {/////////// column check ///////////
+                int l = x;
+                int m = y + 1;
+                while(m < 8 && board[l][m] == ' ')m++;
+                if(m < 8 && (board[l][m] == 'r' || board[l][m] == 'q')){
+                    cout<<"white king is under check\n";
+                    return;
+                }
+                m = y - 1;
+                while(m >= 0 && board[l][m] == ' ')m--;
+                if(m >= 0 && (board[l][m] == 'r' || board[l][m] == 'q')){
+                    cout<<"white king is under check\n";
+                    return;
+                }
+            }
+
+            { //////////// + diagonal check ////////
+                int l = x + 1;
+                int m = y + 1;
+                while(m < 8 && l < 8 && board[l][m] == ' '){
+                    l++;
+                    m++;
+                }
+                if(m < 8 && l < 8 && (board[l][m] == 'b' || board[l][m] == 'q')){
+                    cout<<"white king is under check\n";
+                    return;
+                }
+                
+                l = x - 1;
+                m = y - 1;
+                while(m >= 0 && l >= 0 && board[l][m] == ' '){
+                    l--;
+                    m--;
+                }
+                if(m >= 0 && l >= 0 && (board[l][m] == 'b' || board[l][m] == 'q')){
+                    cout<<"white king is under check\n";
+                    return;
+                }
+            }
+
+            {/////////// - diagonal check ////////////////
+                int l = x + 1;
+                int m = y - 1;
+                while(l < 8 && m >= 0 && board[l][m] == ' '){
+                    l++;
+                    m--;
+                }
+                if(m >= 0 && l < 8 && (board[l][m] == 'b' || board[l][m] == 'q')){
+                    cout<<"white king is under check\n";
+                    return;
+                }
+
+                l = x - 1;
+                m = y + 1;
+                while(m < 8 && l >= 0 && board[l][m] == ' '){
+                    m++;
+                    l--;
+                }
+                if(l >= 0 && m < 8 && (board[l][m] == 'b' || board[l][m] == 'q')){
+                    cout<<"white king is under check\n";
+                    return;
+                }
+            }
+        }
+    }
+
     bool isValidpeace(int x1, int y1){
         if(x1 < 0 || x1 > 7 || y1 < 0 || y1 > 7)return false;
         if(isWhiteTurn){
