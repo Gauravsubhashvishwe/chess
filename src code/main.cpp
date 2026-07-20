@@ -150,7 +150,49 @@ public:
                     }
                 }
             }
-            
+
+            {///////////// for check by knight ///////////////////////
+                if(x - 1 >= 0){
+                    if(y - 2 >= 0 && board[x - 1][y - 2] == 'n'){
+                        cout<<"white king is under check\n";
+                        return;
+                    }
+                    if(y + 2 < 8 && board[x - 1][y + 2] == 'n'){
+                        cout<<"white king is under check\n";
+                        return;
+                    }
+                }
+                if(x + 1 < 8){
+                    if(y - 2 >= 0 && board[x + 1][y - 2] == 'n'){
+                        cout<<"white king is under check\n";
+                        return;
+                    }
+                    if(y + 2 < 8 && board[x + 1][y + 2] == 'n'){
+                        cout<<"white king is under check\n";
+                        return;
+                    }
+                }
+                if(y - 1 >= 0){
+                    if(x - 2 >= 0 && board[x - 2][y - 1] == 'n'){
+                        cout<<"white king is under check\n";
+                        return;
+                    }
+                    if(x + 2 < 8 && board[x + 2][y - 1] == 'n'){
+                        cout<<"white king is under check\n";
+                        return;
+                    }
+                }
+                if(y + 1 < 8){
+                    if(x - 2 >= 0 && board[x - 2][y + 1] == 'n'){
+                        cout<<"white king is under check\n";
+                        return;
+                    }
+                    if(x + 2 < 8 && board[x + 2][y + 1] == 'n'){
+                        cout<<"white king is under check\n";
+                        return;
+                    }
+                }
+            }
         }
     }
 
