@@ -194,6 +194,154 @@ public:
                 }
             }
         }
+        else { // Black's turn
+            int x, y;
+            for(int i = 7; i >= 0; i--){
+                for(int j = 0; j < 8; j++){
+                    if(board[i][j] == 'k'){
+                        x = i;
+                        y = j;
+                    }
+                }
+            }
+            
+            {///////// row check ///////////
+                int l = x + 1;
+                int m = y;
+                while(l < 8 && board[l][m] == ' ')l++;
+                if(l < 8 && (board[l][m] == 'R' || board[l][m] == 'Q')){
+                    cout<<"black king is under check\n";
+                    return;
+                }
+                l = x - 1;
+                while(l >= 0 && board[l][m] == ' ')l--;
+                if(l >= 0 && (board[l][m] == 'R' || board[l][m] == 'Q')){
+                    cout<<"black king is under check\n";
+                    return;
+                }
+            }
+            
+            {/////////// column check ///////////
+                int l = x;
+                int m = y + 1;
+                while(m < 8 && board[l][m] == ' ')m++;
+                if(m < 8 && (board[l][m] == 'R' || board[l][m] == 'Q')){
+                    cout<<"black king is under check\n";
+                    return;
+                }
+                m = y - 1;
+                while(m >= 0 && board[l][m] == ' ')m--;
+                if(m >= 0 && (board[l][m] == 'R' || board[l][m] == 'Q')){
+                    cout<<"black king is under check\n";
+                    return;
+                }
+            }
+
+            { //////////// + diagonal check ////////
+                int l = x + 1;
+                int m = y + 1;
+                while(m < 8 && l < 8 && board[l][m] == ' '){
+                    l++;
+                    m++;
+                }
+                if(m < 8 && l < 8 && (board[l][m] == 'B' || board[l][m] == 'Q')){
+                    cout<<"black king is under check\n";
+                    return;
+                }
+                
+                l = x - 1;
+                m = y - 1;
+                while(m >= 0 && l >= 0 && board[l][m] == ' '){
+                    l--;
+                    m--;
+                }
+                if(m >= 0 && l >= 0 && (board[l][m] == 'B' || board[l][m] == 'Q')){
+                    cout<<"black king is under check\n";
+                    return;
+                }
+            }
+
+            {/////////// - diagonal check ////////////////
+                int l = x + 1;
+                int m = y - 1;
+                while(l < 8 && m >= 0 && board[l][m] == ' '){
+                    l++;
+                    m--;
+                }
+                if(m >= 0 && l < 8 && (board[l][m] == 'B' || board[l][m] == 'Q')){
+                    cout<<"black king is under check\n";
+                    return;
+                }
+
+                l = x - 1;
+                m = y + 1;
+                while(m < 8 && l >= 0 && board[l][m] == ' '){
+                    m++;
+                    l--;
+                }
+                if(l >= 0 && m < 8 && (board[l][m] == 'B' || board[l][m] == 'Q')){
+                    cout<<"black king is under check\n";
+                    return;
+                }
+            }
+
+            {//////// for check by pawn ////////////////////
+                // White pawns attack from the row below the black king
+                if(x + 1 < 8){
+                    if(y - 1 >= 0 && board[x + 1][y - 1] == 'P'){
+                        cout<<"black king is under check\n";
+                        return;
+                    }
+                    else if(y + 1 < 8 && board[x + 1][y + 1] == 'P'){
+                        cout<<"black king is under check\n";
+                        return;
+                    }
+                }
+            }
+
+            {///////////// for check by knight ///////////////////////
+                if(x - 1 >= 0){
+                    if(y - 2 >= 0 && board[x - 1][y - 2] == 'N'){
+                        cout<<"black king is under check\n";
+                        return;
+                    }
+                    if(y + 2 < 8 && board[x - 1][y + 2] == 'N'){
+                        cout<<"black king is under check\n";
+                        return;
+                    }
+                }
+                if(x + 1 < 8){
+                    if(y - 2 >= 0 && board[x + 1][y - 2] == 'N'){
+                        cout<<"black king is under check\n";
+                        return;
+                    }
+                    if(y + 2 < 8 && board[x + 1][y + 2] == 'N'){
+                        cout<<"black king is under check\n";
+                        return;
+                    }
+                }
+                if(y - 1 >= 0){
+                    if(x - 2 >= 0 && board[x - 2][y - 1] == 'N'){
+                        cout<<"black king is under check\n";
+                        return;
+                    }
+                    if(x + 2 < 8 && board[x + 2][y - 1] == 'N'){
+                        cout<<"black king is under check\n";
+                        return;
+                    }
+                }
+                if(y + 1 < 8){
+                    if(x - 2 >= 0 && board[x - 2][y + 1] == 'N'){
+                        cout<<"black king is under check\n";
+                        return;
+                    }
+                    if(x + 2 < 8 && board[x + 2][y + 1] == 'N'){
+                        cout<<"black king is under check\n";
+                        return;
+                    }
+                }
+            }
+        }
     }
 
     bool isValidpeace(int x1, int y1){
