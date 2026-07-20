@@ -545,8 +545,15 @@ public:
     }
 
     void move(int x1, int y1, int x2, int y2){
+        char safty = board[x2][y2];
         board[x2][y2] = board[x1][y1];
         board[x1][y1] = ' ';
+        if(check()){
+            cout<<"You are exposing your own king. move other peace."<<endl;
+            board[x1][y1] = board[x2][y2];
+            board[x2][y2] = safty;
+            return;
+        }
         isWhiteTurn ^= 1;
         return;
     }
