@@ -518,13 +518,7 @@ public:
     bool isValidMove(int x1, int y1, int x2, int y2){
         if(x1 < 0 || x1 > 7 || x2 < 0 || x2 > 7 || y1 < 0 || y1 > 7 || y2 < 0 || y2 > 7)return false;
         if(board[x1][y1] == 'p' || board[x1][y1] == 'P'){
-            if(valid_p_m(x1, y1, x2, y2)){
-                if(x2 == 0 || x2 == 7){
-                    upgrad_p(x1, y1);
-                }
-                return true;
-            }
-
+            return valid_p_m(x1, y1, x2, y2);
         }
         else if(board[x1][y1] == 'r' || board[x1][y1] == 'R'){
             return valid_r_m(x1, y1, x2, y2);
@@ -553,6 +547,13 @@ public:
             board[x1][y1] = board[x2][y2];
             board[x2][y2] = safty;
             return;
+        }
+
+        if(board[x2][y2] == 'P' && x2 == 0){
+            upgrad_p(x2, y2);
+        }
+        else if(board[x2][y2] == 'p' && x2 == 7){
+            upgrad_p(x2, y2);
         }
         isWhiteTurn ^= 1;
         return;
