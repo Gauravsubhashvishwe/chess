@@ -48,7 +48,7 @@ public:
         }
     }
 
-    void check(){
+    bool check(){
         if(isWhiteTurn){
             int x,y;
             for(int i = 7; i >= 0; i--){
@@ -65,13 +65,13 @@ public:
                 while(l < 8 && board[l][m] == ' ')l++;
                 if(l < 8 && (board[l][m] == 'r' || board[l][m] == 'q')){
                     cout<<"white king is under check\n";
-                    return;
+                    return true;
                 }
                 l = x - 1;
                 while(l >= 0 && board[l][m] == ' ')l--;
                 if(l >= 0 && (board[l][m] == 'r' || board[l][m] == 'q')){
                     cout<<"white king is under check\n";
-                    return;
+                    return true;
                 }
             }
             {/////////// column check ///////////
@@ -80,13 +80,13 @@ public:
                 while(m < 8 && board[l][m] == ' ')m++;
                 if(m < 8 && (board[l][m] == 'r' || board[l][m] == 'q')){
                     cout<<"white king is under check\n";
-                    return;
+                    return true;
                 }
                 m = y - 1;
                 while(m >= 0 && board[l][m] == ' ')m--;
                 if(m >= 0 && (board[l][m] == 'r' || board[l][m] == 'q')){
                     cout<<"white king is under check\n";
-                    return;
+                    return true;
                 }
             }
 
@@ -99,7 +99,7 @@ public:
                 }
                 if(m < 8 && l < 8 && (board[l][m] == 'b' || board[l][m] == 'q')){
                     cout<<"white king is under check\n";
-                    return;
+                    return true;
                 }
                 
                 l = x - 1;
@@ -110,7 +110,7 @@ public:
                 }
                 if(m >= 0 && l >= 0 && (board[l][m] == 'b' || board[l][m] == 'q')){
                     cout<<"white king is under check\n";
-                    return;
+                    return true;
                 }
             }
 
@@ -123,7 +123,7 @@ public:
                 }
                 if(m >= 0 && l < 8 && (board[l][m] == 'b' || board[l][m] == 'q')){
                     cout<<"white king is under check\n";
-                    return;
+                    return true;
                 }
 
                 l = x - 1;
@@ -134,7 +134,7 @@ public:
                 }
                 if(l >= 0 && m < 8 && (board[l][m] == 'b' || board[l][m] == 'q')){
                     cout<<"white king is under check\n";
-                    return;
+                    return true;
                 }
             }
 
@@ -142,11 +142,11 @@ public:
                 if(x - 1 >= 0){
                     if(y - 1 >= 0 && board[x - 1][y - 1] == 'p'){
                         cout<<"white king is under check\n";
-                        return;
+                        return true;
                     }
                     else if(y + 1 < 8 && board[x - 1][y + 1] == 'p'){
                         cout<<"white king is under check\n";
-                        return;
+                        return true;
                     }
                 }
             }
@@ -155,41 +155,41 @@ public:
                 if(x - 1 >= 0){
                     if(y - 2 >= 0 && board[x - 1][y - 2] == 'n'){
                         cout<<"white king is under check\n";
-                        return;
+                        return true;
                     }
                     if(y + 2 < 8 && board[x - 1][y + 2] == 'n'){
                         cout<<"white king is under check\n";
-                        return;
+                        return true;
                     }
                 }
                 if(x + 1 < 8){
                     if(y - 2 >= 0 && board[x + 1][y - 2] == 'n'){
                         cout<<"white king is under check\n";
-                        return;
+                        return true;
                     }
                     if(y + 2 < 8 && board[x + 1][y + 2] == 'n'){
                         cout<<"white king is under check\n";
-                        return;
+                        return true;
                     }
                 }
                 if(y - 1 >= 0){
                     if(x - 2 >= 0 && board[x - 2][y - 1] == 'n'){
                         cout<<"white king is under check\n";
-                        return;
+                        return true;
                     }
                     if(x + 2 < 8 && board[x + 2][y - 1] == 'n'){
                         cout<<"white king is under check\n";
-                        return;
+                        return true;
                     }
                 }
                 if(y + 1 < 8){
                     if(x - 2 >= 0 && board[x - 2][y + 1] == 'n'){
                         cout<<"white king is under check\n";
-                        return;
+                        return true;
                     }
                     if(x + 2 < 8 && board[x + 2][y + 1] == 'n'){
                         cout<<"white king is under check\n";
-                        return;
+                        return true;
                     }
                 }
             }
@@ -211,13 +211,13 @@ public:
                 while(l < 8 && board[l][m] == ' ')l++;
                 if(l < 8 && (board[l][m] == 'R' || board[l][m] == 'Q')){
                     cout<<"black king is under check\n";
-                    return;
+                    return true;
                 }
                 l = x - 1;
                 while(l >= 0 && board[l][m] == ' ')l--;
                 if(l >= 0 && (board[l][m] == 'R' || board[l][m] == 'Q')){
                     cout<<"black king is under check\n";
-                    return;
+                    return true;
                 }
             }
             
@@ -227,13 +227,13 @@ public:
                 while(m < 8 && board[l][m] == ' ')m++;
                 if(m < 8 && (board[l][m] == 'R' || board[l][m] == 'Q')){
                     cout<<"black king is under check\n";
-                    return;
+                    return true;
                 }
                 m = y - 1;
                 while(m >= 0 && board[l][m] == ' ')m--;
                 if(m >= 0 && (board[l][m] == 'R' || board[l][m] == 'Q')){
                     cout<<"black king is under check\n";
-                    return;
+                    return true;
                 }
             }
 
@@ -246,7 +246,7 @@ public:
                 }
                 if(m < 8 && l < 8 && (board[l][m] == 'B' || board[l][m] == 'Q')){
                     cout<<"black king is under check\n";
-                    return;
+                    return true;
                 }
                 
                 l = x - 1;
@@ -257,7 +257,7 @@ public:
                 }
                 if(m >= 0 && l >= 0 && (board[l][m] == 'B' || board[l][m] == 'Q')){
                     cout<<"black king is under check\n";
-                    return;
+                    return true;
                 }
             }
 
@@ -270,7 +270,7 @@ public:
                 }
                 if(m >= 0 && l < 8 && (board[l][m] == 'B' || board[l][m] == 'Q')){
                     cout<<"black king is under check\n";
-                    return;
+                    return true;
                 }
 
                 l = x - 1;
@@ -281,7 +281,7 @@ public:
                 }
                 if(l >= 0 && m < 8 && (board[l][m] == 'B' || board[l][m] == 'Q')){
                     cout<<"black king is under check\n";
-                    return;
+                    return true;
                 }
             }
 
@@ -290,11 +290,11 @@ public:
                 if(x + 1 < 8){
                     if(y - 1 >= 0 && board[x + 1][y - 1] == 'P'){
                         cout<<"black king is under check\n";
-                        return;
+                        return true;
                     }
                     else if(y + 1 < 8 && board[x + 1][y + 1] == 'P'){
                         cout<<"black king is under check\n";
-                        return;
+                        return true;
                     }
                 }
             }
@@ -303,41 +303,41 @@ public:
                 if(x - 1 >= 0){
                     if(y - 2 >= 0 && board[x - 1][y - 2] == 'N'){
                         cout<<"black king is under check\n";
-                        return;
+                        return true;
                     }
                     if(y + 2 < 8 && board[x - 1][y + 2] == 'N'){
                         cout<<"black king is under check\n";
-                        return;
+                        return true;
                     }
                 }
                 if(x + 1 < 8){
                     if(y - 2 >= 0 && board[x + 1][y - 2] == 'N'){
                         cout<<"black king is under check\n";
-                        return;
+                        return true;
                     }
                     if(y + 2 < 8 && board[x + 1][y + 2] == 'N'){
                         cout<<"black king is under check\n";
-                        return;
+                        return true;
                     }
                 }
                 if(y - 1 >= 0){
                     if(x - 2 >= 0 && board[x - 2][y - 1] == 'N'){
                         cout<<"black king is under check\n";
-                        return;
+                        return true;
                     }
                     if(x + 2 < 8 && board[x + 2][y - 1] == 'N'){
                         cout<<"black king is under check\n";
-                        return;
+                        return true;
                     }
                 }
                 if(y + 1 < 8){
                     if(x - 2 >= 0 && board[x - 2][y + 1] == 'N'){
                         cout<<"black king is under check\n";
-                        return;
+                        return true;
                     }
                     if(x + 2 < 8 && board[x + 2][y + 1] == 'N'){
                         cout<<"black king is under check\n";
-                        return;
+                        return true;
                     }
                 }
             }
