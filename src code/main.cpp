@@ -137,6 +137,20 @@ public:
                     return;
                 }
             }
+
+            {//////// for check by pawn ////////////////////
+                if(x - 1 >= 0){
+                    if(y - 1 >= 0 && board[x - 1][y - 1] == 'p'){
+                        cout<<"white king is under check\n";
+                        return;
+                    }
+                    else if(y + 1 < 8 && board[x - 1][y + 1] == 'p'){
+                        cout<<"white king is under check\n";
+                        return;
+                    }
+                }
+            }
+            
         }
     }
 
